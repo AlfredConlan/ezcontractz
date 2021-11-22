@@ -4,7 +4,7 @@ const app = express();
 const bcrypt = require("bcrypt");
 const fs = require("fs");
 const path = require("path");
-const { Sequelize, Model, DataTypes } = require("sequelize");
+const { Sequelize, Model, DataTypes, DATEONLY } = require("sequelize");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require("../config/config.json")[env];
@@ -73,6 +73,7 @@ Users.init(
 
 Tasks.init(
   {
+    userName: DataTypes.STRING,
     taskName: DataTypes.STRING,
     category: DataTypes.STRING,
     description: DataTypes.STRING,
@@ -191,14 +192,18 @@ app.delete("/users/delete/:user_name", async (req, res) => {
 });
 
 // post a new task
-app.post("/tasks", async (req, res) => {
+app.post("/tasks/:username", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
+  const userId = req.params["userName"];
   await Tasks.create({
-    user_name: req.body.user_name,
-    date_of_task: req.body.date_of_task,
-    location_of_task: req.body.location_of_task,
-    distance: req.body.distance,
-    difficulty_level: req.body.difficulty_level,
+    userName: userId,
+    taskName: req.body.taskName,
+    category: req.body.category,
+    description: req.body.description,
+    assignedContractor: req.body.assignedContractor,
+    scheduled: req.body.scheduled,
+    date: req.body.date,
+    maxBudget: req.body.maxBudget,
   });
   return res.send('{"status": "Tasks added!"}');
   // res.status(200).send("Tasks added");
