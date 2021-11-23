@@ -1,13 +1,10 @@
 import "./App.css";
+import LoginRegistration from "./components/LoginRegistration";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          <h1>Welcome to EZContractz</h1>
-        </p>
-      </header>
+      <LoginRegistration />
     </div>
   );
 }
