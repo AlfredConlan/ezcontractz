@@ -2,6 +2,7 @@ const express = require("express");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const bcrypt = require("bcrypt");
+const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
 const { Sequelize, Model, DataTypes, DATEONLY } = require("sequelize");
@@ -10,6 +11,9 @@ const env = process.env.NODE_ENV || "development";
 const config = require("../config/config.json")[env];
 const db = {};
 const bodyParser = require("body-parser");
+
+app.use(cors({ origin: (orig, cb) => cb(null, true), credentials: true }));
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
@@ -191,12 +195,12 @@ app.delete("/users/delete/:user_name", async (req, res) => {
   res.send('{"userDeleted": "true"}');
 });
 
-// post a new task
-app.post("/tasks/:username", async (req, res) => {
+
+// post a new task 
+app.post("/tasks", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const userId = req.params["userName"];
   await Tasks.create({
-    userName: userId,
     taskName: req.body.taskName,
     category: req.body.category,
     description: req.body.description,
@@ -204,12 +208,19 @@ app.post("/tasks/:username", async (req, res) => {
     scheduled: req.body.scheduled,
     date: req.body.date,
     maxBudget: req.body.maxBudget,
-  });
+  }.catch(e => { console.log(e) }));
   return res.send('{"status": "Tasks added!"}');
   // res.status(200).send("Tasks added");
 });
 
-// get all tasks for current user
+// get all users   WORKING
+app.get("/tasks", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  const tasks = await Tasks.findAll();
+  res.status(200).send(tasks);
+});
+
+// get all tasks for current user87bhgv
 app.get("/tasks/:user_name", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const userId = req.params["user_name"];
@@ -249,3 +260,28 @@ app.delete("/deleteTask", (req, res) => {
   });
   return res.send('{"status": "Task deleted!"}');
 });
+
+// Jake Section 
+
+// Database work 
+// export default function Datatable({ data }) {
+//   const columns = data[0] && Object.keys(data[0]);
+//   return (
+//     <table cellPadding={0} cellSpacing={0}>
+//       <thead>
+//         <tr>
+//           {data[0] && columns.map((heading) => <th>{heading}</th>)}
+//         </tr>
+//       </thead>
+//       <tbody>
+//         {data.map((row) => (
+//           <tr>
+//             {columns.map((column) => (
+//               <td>{row[column]}</td>
+//             ))}
+//           </tr>
+//         ))}
+//       </tbody>
+//     </table>
+//   );
+// }
