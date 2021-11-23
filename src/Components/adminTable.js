@@ -30,7 +30,7 @@ export default function AdminTable() {
     return (
         <div className="App">
             <MaterialTable
-                title="Your Tasks"
+                title="Users"
                 data={users}
                 columns={columns}
                 options={{

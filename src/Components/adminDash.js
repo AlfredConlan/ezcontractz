@@ -1,7 +1,7 @@
 import React from 'react';
 // import BasicTable from './dataTable'
-import BasicTable from './home';
-import AdminTable from './adminTable';
+import BasicTable from './Home';
+import AdminTable from './AdminTable';
 
 export default function AdminDash() {
     return (

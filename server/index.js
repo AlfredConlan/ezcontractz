@@ -205,6 +205,7 @@ app.post("/tasks", async (req, res) => {
     scheduled: req.body.scheduled,
     date: req.body.date,
     maxBudget: req.body.maxBudget,
+    userName: req.body.maxBudget
   }.catch(e => { console.log(e) }));
   return res.send('{"status": "Tasks added!"}');
   // res.status(200).send("Tasks added");
