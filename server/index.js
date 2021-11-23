@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
-const { Sequelize, Model, DataTypes } = require("sequelize");
+const { Sequelize, Model, DataTypes, DATEONLY } = require("sequelize");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require("../config/config.json")[env];
@@ -77,6 +77,7 @@ Users.init(
 
 Tasks.init(
   {
+    userName: DataTypes.STRING,
     taskName: DataTypes.STRING,
     category: DataTypes.STRING,
     description: DataTypes.STRING,
@@ -194,9 +195,11 @@ app.delete("/users/delete/:user_name", async (req, res) => {
   res.send('{"userDeleted": "true"}');
 });
 
+
 // post a new task 
 app.post("/tasks", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
+  const userId = req.params["userName"];
   await Tasks.create({
     taskName: req.body.taskName,
     category: req.body.category,
