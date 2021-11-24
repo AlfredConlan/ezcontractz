@@ -2,10 +2,11 @@ import "./App.css";
 // import Data from "./Components/taskList";
 import React from "react";
 // import BasicTable from "./Components/dataTable";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import TaskList from "./components/taskList";
-import AdminDash from "./components/AdminDash";
-import Navbar from "./components/Navbar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import TaskList from "./Components/TaskList";
+import AdminDash from "./Components/AdminDash";
+import Navbar from "./Components/Navbar";
+import LoginRegistration from "./Components/LoginRegistration";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<TaskList />} />
             <Route path="/admin" element={<AdminDash />} />
+            <Route path="/login" element={<LoginRegistration />} />
           </Routes>
         </BrowserRouter>
       </header>

@@ -1,5 +1,3 @@
-import "./LoginRegistration.css";
-
 function LoginRegistration() {
   return (
     <div className="container border border-primary border-2 mt-3 w-25">
@@ -17,12 +15,14 @@ function LoginRegistration() {
       </ul>
       <div className="tab-content" id="myTabContent">
         <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-          <form className="pb-3 pt-3">
-            <div className="mb-3 text-start">
+          <form className="pb-3 pt-3 was-validated">
+            <div className="mb-3 text-start form-group">
               <label for="InputEmail" className="form-label">
                 Email address
               </label>
-              <input type="email" className="form-control" id="InputEmail" aria-describedby="emailHelp" />
+              <input type="email" className="form-control" id="InputEmail" placeholder="Enter email" />
+              {/* <div className="valid-feedback">Valid.</div>
+              <div className="invalid-feedback">Please enter a valid email.</div> */}
             </div>
             <div className="mb-3 text-start">
               <label for="InputPassword1" className="form-label">
