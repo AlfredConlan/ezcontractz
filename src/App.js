@@ -5,10 +5,12 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import TaskList from "./components/TaskList";
 import AdminDash from "./components/AdminDash";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <header className="App-header">
         <p>
           <h1>Welcome to EZContractz</h1>
