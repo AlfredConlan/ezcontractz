@@ -3,7 +3,7 @@ import "./App.css";
 import React from "react";
 // import BasicTable from "./Components/dataTable";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import TaskList from "./components/TaskList";
+import TaskList from "./components/taskList";
 import AdminDash from "./components/AdminDash";
 import Navbar from "./components/Navbar";
 
