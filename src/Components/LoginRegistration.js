@@ -1,6 +1,6 @@
 function LoginRegistration() {
   return (
-    <div className="container border border-primary border-2 mt-3 w-25">
+    <div className="container border border-primary border-2 pt-5 w-25">
       <ul className="nav nav-tabs p-3" id="myTab" role="tablist">
         <li className="nav-item" role="presentation">
           <button className="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
