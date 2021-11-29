@@ -19,7 +19,7 @@ function NavBar() {
               <Link to="/tasks" style={{ textDecoration: "none" }} className="nav-link">
                 Tasks
               </Link>
-              {/* <Link to="/Profile" style={{ textDecoration: "none" }} className="nav-link">
+              {/* <Link to="/ContractorSearch" style={{ textDecoration: "none" }} className="nav-link">
                 Profile
               </Link> */}
               <Link to="/admin" style={{ textDecoration: "none" }} className="nav-link">
