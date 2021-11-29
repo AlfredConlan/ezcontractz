@@ -94,19 +94,24 @@ Tasks.init(
 // login a user
 app.post("/loginAttempt", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  const userName = req.body.user_name;
+  const email = req.body.email;
+  console.log(email);
   const password = req.body.password;
+  console.log(password);
   Users.findOne({
     where: {
-      user_name: userName,
+      email: email,
     },
-  }).then((user) => {
-    bcrypt.compare(password, user.password, function (err, isMatch) {
+  }).then((users) => {
+    console.log(users);
+    bcrypt.compare(password, users.password, function (err, isMatch) {
       if (err) {
         throw err;
       } else if (!isMatch) {
+        console.log("isMatch is False");
         return res.send('{"isMatch": "false"}');
       } else {
+        console.log("isMatch is True");
         res.send('{"isMatch": "true"}');
       }
     });
@@ -212,7 +217,6 @@ app.post("/tasks", async (req, res) => {
     })
   );
   return res.send('{"status": "Tasks added!"}');
-  // res.status(200).send("Tasks added");
 });
 
 // get all users   WORKING
