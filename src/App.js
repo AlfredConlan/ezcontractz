@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TaskList from "./Components/TaskList";
 import AdminDash from "./Components/AdminDash";
 import Navbar from "./Components/Navbar";
+import ContractorSearch from "./Components/ContractorSearch";
 import LoginRegistration from "./Components/LoginRegistration";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Navbar />{" "}
         <Routes>
           <Route path="/" element={<TaskList />} />
+          <Route path="/ContractorSearch" element={<ContractorSearch />} />
           <Route path="/tasks" element={<TaskList />} />
           <Route path="/admin" element={<AdminDash />} />
           <Route path="/login" element={<LoginRegistration />} />
