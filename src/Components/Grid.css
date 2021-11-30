@@ -1,0 +1,27 @@
+.contractorGrid{
+    margin:20px;
+    display:flex;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap:wrap;
+    border-radius:10px;
+    overflow:hidden;
+    -webkit-box-shadow:12px;
+    box-shadow: 22px;
+  
+}
+
+.contractorCard{
+    margin: 20px;
+}
+
+h6{
+    color:black
+}
+
+/*------------------Search Bar-------------------*/
+.SearchBar {
+    align-items: center;
+    margin:40px;
+}
+
