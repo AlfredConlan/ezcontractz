@@ -4,12 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card, Col, Row }from "react-bootstrap";
 import {Button} from "react-bootstrap";
 import SearchBar from './SearchBar';
+import './Grid.css';
 
 // import axios from 'axios';
 // import SearchFunction from './SearchFunction';
 
 //need to replace the array with an api call
-//need to add this + searchBar to another component to create the search page
 const Contractor = () =>{  
     const cardInfo = [
       { name: "me", email: "test", phone: "test", address: "test"},
@@ -20,6 +20,9 @@ const Contractor = () =>{
       { name: "and", email: "test", phone: "test", address: "test"},
     ];
 //defines card layout
+//need to pass the searchbar parameters into the get
+//need to call the search/get function with the input on the search button click
+
 const renderCard = (card, index) => {            
   return (
     <div className = "contractorCard">
