@@ -1,16 +1,17 @@
-import React from "react";
-// import BasicTable from './dataTable'
-import AdminTable from "./AdminTable";
+import AdminList from "./AdminTable";
 
-export default function AdminDash() {
-  return (
-    <container>
-      <container className="profileHouseSection">
-        <h1>Welcome to the Admin Portal</h1>
-      </container>
-      <container className="Users">
-        <AdminTable />
-      </container>
-    </container>
-  );
-}
+
+function AdminDash() {
+    return (
+      <container>
+          <div>
+            <h1>Admin Table</h1>
+          </div>
+          <div>
+            <AdminList />
+          </div>
+        </container>
+    );
+  }
+  
+  export default AdminDash;
