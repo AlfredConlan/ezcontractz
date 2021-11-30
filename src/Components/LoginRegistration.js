@@ -106,7 +106,7 @@ function LoginRegistration() {
     <div className="row">
       <div className="col-s-0 col-md-1 col-lg-4"></div>
       <div className="col">
-        <div className="container border border-primary border-2 marginTop">
+        <div className="container border border-primary border-2 mt-5 ">
           <ul className="nav nav-tabs p-3" id="myTab" role="tablist">
             <li className="nav-item" role="presentation">
               <button className="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../Assets/img/logo.png";
 
 //Import Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -8,9 +9,9 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 function NavBar() {
   return (
     <div>
-      <Navbar collapseOnSelect fixed="top" expand="sm" bg="dark" variant="dark">
-        <Navbar.Brand href="#home">
-          <img src="../Assets/img/logo.png" alt="logo" />
+      <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark">
+        <Navbar.Brand href="#home" className="ms-5">
+          <img src={logo} alt="logo" />
         </Navbar.Brand>
         <Container>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
