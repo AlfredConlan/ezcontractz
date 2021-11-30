@@ -1,4 +1,3 @@
-import "./App.css";
 // import Data from "./Components/taskList";
 import React from "react";
 // import BasicTable from "./Components/dataTable";
