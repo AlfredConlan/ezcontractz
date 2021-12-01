@@ -1,6 +1,6 @@
 import React from "react";
 // import BasicTable from './dataTable'
-import BasicTable from "./Home";
+import TaskTable from "./TasksTable";
 
 export default function TaskList() {
   return (
@@ -10,7 +10,7 @@ export default function TaskList() {
         <h1>Welcome to the App </h1>
       </container>
       <container className="taskList">
-        <BasicTable />
+        <TaskTable />
       </container>
     </container>
   );
