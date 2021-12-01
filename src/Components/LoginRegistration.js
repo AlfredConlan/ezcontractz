@@ -1,7 +1,7 @@
 function LoginRegistration() {
   async function loginUser() {
     console.log("loginUser started");
-    let response = await fetch("http://localhost:3001/loginAttempt", {
+    await fetch("http://localhost:3001/loginAttempt", {
       method: "POST",
       headers: {
         // "Accept": "text/html",
@@ -38,7 +38,7 @@ function LoginRegistration() {
       document.getElementById("password").focus();
       return false;
     } else {
-      console.log("validation end, start loginUser");
+      // console.log("validation end, start loginUser");
       loginUser();
     }
   }
@@ -55,7 +55,7 @@ function LoginRegistration() {
         lastName: document.getElementById("InputLastName").value,
         userName: document.getElementById("InputUserName").value,
         email: document.getElementById("InputEmail").value,
-        location: document.getElementById("InputLocation").value,
+        location: document.getElementById("InputZip").value,
         password: document.getElementById("InputPassword").value,
         role: "user",
       }),
@@ -89,9 +89,9 @@ function LoginRegistration() {
       document.getElementById("InputEmail").focus();
       return false;
     }
-    if (document.getElementById("InputLocation").value === "") {
-      alert("Please provide your Location!");
-      document.getElementById("InputLocation").focus();
+    if (document.getElementById("InputZip").value === "") {
+      alert("Please provide your Zip Code!");
+      document.getElementById("InputZip").focus();
       return false;
     }
     if (document.getElementById("InputPassword").value === "") {
@@ -177,10 +177,10 @@ function LoginRegistration() {
                   <input type="email" className="form-control" id="InputEmail" required />
                 </div>
                 <div className="mb-3 text-start">
-                  <label for="InputLocation" className="form-label">
-                    Location
+                  <label for="InputZip" className="form-label">
+                    Zip Code
                   </label>
-                  <input type="text" className="form-control" id="InputLocation" required />
+                  <input type="text" className="form-control" id="InputZip" required />
                 </div>
                 <div className="mb-3 text-start">
                   <label for="InputPassword" className="form-label">
