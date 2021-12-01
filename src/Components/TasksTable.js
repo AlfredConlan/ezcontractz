@@ -4,62 +4,62 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {Trash, Pencil} from 'react-bootstrap-icons';
 
 
-const AdminTable = (props) => {
-  const [users, setUsers] = useState([]);
-  const [searchUsers, setSearchUsers] = useState("");
-  const usersRef = useRef();
+const TaskTable = (props) => {
+  const [tasks, setTasks] = useState([]);
+  const [searchTasks, setSearchTasks] = useState("");
+  const tasksRef = useRef();
 
-  usersRef.current = users;
+  tasksRef.current = tasks;
 
   useEffect(() => {
-    retrieveUsers();
+    retrieveTasks();
   }, []);
 
-  const onChangeSearchUsers = (e) => {
-    const searchUsers = e.target.value;
-    setSearchUsers(searchUsers);
+  const onChangeSearchTasks = (e) => {
+    const searchTasks = e.target.value;
+    setSearchTasks(searchTasks);
   };
 
     // Fetching users from database 
-  const retrieveUsers = () => {
-    fetch("http://localhost:3001/users")
+  const retrieveTasks = () => {
+    fetch("http://localhost:3001/tasks")
     .then(resp => resp.json())
     .then(resp => {
-        setUsers(resp)
-        console.log(users);
+        setTasks(resp)
+        console.log(tasks);
     })
   };
 
   const refreshList = () => {
-    retrieveUsers();
+    retrieveTasks();
   };
 
 
   const findByTitle = () => {
-    users.findByTitle(users)
+    tasks.findByTitle(tasks)
       .then((response) => {
-        setUsers(response.data);
+        setTasks(response.data);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
-  const openUsers = (rowIndex) => {
-    const id = users.current[rowIndex].id;
+  const openTasks = (rowIndex) => {
+    const id = tasks.current[rowIndex].id;
 
-    props.history.push("/tutorials/" + id);
+    props.history.push("/tasks/" + id);
   };
 
-  const deleteUsers = (rowIndex) => {
-    const userName = usersRef.current[rowIndex].user_name; 
-    users.remove(userName)
+  const deleteTasks = (rowIndex) => {
+    const tasksName = tasksRef.current[rowIndex].taskName; 
+    tasks.remove(tasksName)
       .then((response) => {
-        props.history.push("/users/delete/"+ userName);
-        let newUsers = [...usersRef.current];
-        newUsers.splice(rowIndex, 1);
+        props.history.push("/tasks/delete/"+ tasksName);
+        let newTasks = [...tasksRef.current];
+        newTasks.splice(rowIndex, 1);
 
-        setUsers(newUsers);
+        setTasks(newTasks);
       })
       .catch((e) => {
         console.log(e);
@@ -69,24 +69,28 @@ const AdminTable = (props) => {
   const columns = useMemo(
     () => [
       {
-        Header: "First Name",
-        accessor: "firstName",
+        Header: "Task Name",
+        accessor: "taskName",
       },
       {
-        Header: "Last Name",
-        accessor: "lastName",
+        Header: "Category",
+        accessor: "category",
       },
       {
-        Header: "email",
-        accessor: "email",
+        Header: "Description",
+        accessor: "description",
       },
       {
-        Header: "Location",
-        accessor: "location",
+        Header: "Assigned Contractor",
+        accessor: "assignedContractor",
       },
       {
-        Header: "Role",
-        accessor: "role",
+        Header: "Scheduled",
+        accessor: "scheduled",
+      },
+      {
+        Header: "Max Budget",
+        accessor: "maxBudget",
       },
       {
         Header: "Actions",
@@ -95,10 +99,10 @@ const AdminTable = (props) => {
           const rowIdx = props.row.id;
           return (
             <div>
-              <span onClick={() => openUsers(rowIdx)}>
+              <span onClick={() => openTasks(rowIdx)}>
                 <Pencil className="far fa-edit action mr-2" />
               </span> 
-              <span onClick={() => deleteUsers(rowIdx)}>
+              <span onClick={() => deleteTasks(rowIdx)}>
                 <Trash className="bi bi-trash"/>
               </span>
             </div>
@@ -117,7 +121,7 @@ const AdminTable = (props) => {
     prepareRow,
   } = useTable({
     columns,
-    data: users,
+    data: tasks,
   });
 
   return (
@@ -128,8 +132,8 @@ const AdminTable = (props) => {
             type="text"
             className="form-control"
             placeholder="Search by title"
-            value={searchUsers}
-            onChange={onChangeSearchUsers}
+            value={searchTasks}
+            onChange={onChangeSearchTasks}
           />
           <div className="input-group-append">
             <button
@@ -178,4 +182,4 @@ const AdminTable = (props) => {
   );
 };
 
-export default AdminTable;
+export default TaskTable;
