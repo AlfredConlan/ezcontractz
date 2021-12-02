@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       assignedContractor: DataTypes.STRING,
       scheduled: DataTypes.BOOLEAN,
       date: DataTypes.DATE,
-      maxBudet: DataTypes.INTEGER,
+      maxBudget: DataTypes.INTEGER,
     },
     {
       sequelize,

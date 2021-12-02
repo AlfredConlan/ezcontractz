@@ -122,7 +122,7 @@ app.post("/loginAttempt", async (req, res) => {
 app.post("/users", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   bcrypt.genSalt(10, (err, salt) => {
-    const hash = bcrypt.hash(req.body.password, salt, (err, hash) => {
+    bcrypt.hash(req.body.password, salt, (err, hash) => {
       if (!err) {
         Users.create({
           userName: req.body.userName,
@@ -163,7 +163,7 @@ app.put("/users/modify/:user_name", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let userName = req.params["user_name"];
   bcrypt.genSalt(10, (err, salt) => {
-    const hash = bcrypt.hash(req.body.password, salt, (err, hash) => {
+    bcrypt.hash(req.body.password, salt, (err, hash) => {
       if (!err) {
         Users.update(
           {
@@ -191,7 +191,7 @@ app.put("/users/modify/:user_name", async (req, res) => {
 app.delete("/users/delete/:user_name", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let userName = req.params["user_name"];
-  const users = await Users.destroy({
+  await Users.destroy({
     where: {
       userName: userName,
     },
@@ -202,7 +202,7 @@ app.delete("/users/delete/:user_name", async (req, res) => {
 // post a new task
 app.post("/tasks", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  const userId = req.params["userName"];
+  // const userId = req.params["userName"];
   await Tasks.create(
     {
       taskName: req.body.taskName,
