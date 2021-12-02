@@ -93,6 +93,11 @@ function LoginRegistration() {
       alert("Please provide your Zip Code!");
       document.getElementById("InputZip").focus();
       return false;
+    } else if (document.getElementById("InputZip").value.length !== 5) {
+      console.log(document.getElementById("InputZip").value.length);
+      alert("Zip Code must be 5 digits!");
+      document.getElementById("InputZip").focus();
+      return false;
     }
     if (document.getElementById("InputPassword").value === "") {
       alert("Please provide your Password!");
