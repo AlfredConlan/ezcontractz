@@ -11,6 +11,7 @@ const env = process.env.NODE_ENV || "development";
 const config = require("../config/config.json")[env];
 const db = {};
 const bodyParser = require("body-parser");
+const axios = require('axios')
 
 app.use(cors({ origin: (orig, cb) => cb(null, true), credentials: true }));
 
