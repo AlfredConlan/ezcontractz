@@ -94,13 +94,13 @@ Tasks.init(
 // login a user
 app.post("/loginAttempt", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  const email = req.body.email;
-  console.log(email);
+  const username = req.body.username;
+  console.log(username);
   const password = req.body.password;
   console.log(password);
   Users.findOne({
     where: {
-      email: email,
+      userName: username,
     },
   }).then((users) => {
     console.log(users);

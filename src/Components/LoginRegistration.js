@@ -8,18 +8,29 @@ function LoginRegistration() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: document.getElementById("email").value,
+        username: document.getElementById("username").value,
         password: document.getElementById("password").value,
       }),
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        localStorage.setItem("UserName", "No One");
+        console.log(localStorage.getItem("UserName"));
         if (res.isMatch === "false") {
-          console.log("Match is false");
           alert("The username & password combination is incorrect. Please try again.");
+          return;
         } else if (res.isMatch === "true") {
-          console.log("Match is true");
+          const userName = document.getElementById("username").value;
+          localStorage.setItem("UserName", userName);
+        }
+      })
+      .then((res) => {
+        let user_name = localStorage.getItem("UserName");
+        console.log(user_name);
+        if (user_name === "No One" || user_name === null) {
+          console.log("If statement is true: " + user_name);
+          return;
+        } else {
           document.location.replace("http://localhost:3000/tasks");
         }
       });
@@ -28,9 +39,9 @@ function LoginRegistration() {
   function validateLogin(e) {
     e.preventDefault();
     console.log("Validation Started");
-    if (document.getElementById("email").value === "") {
-      alert("Please provide your email!");
-      document.getElementById("email").focus();
+    if (document.getElementById("username").value === "") {
+      alert("Please provide your username!");
+      document.getElementById("username").focus();
       return false;
     }
     if (document.getElementById("password").value === "") {
@@ -62,11 +73,20 @@ function LoginRegistration() {
     })
       .then((res) => res.json())
       .then((res) => {
-        alert("User was added");
-        document.location.replace("http://localhost:3000/tasks");
+        const userName = document.getElementById("InputUserName").value;
+        localStorage.setItem("UserName", userName);
+      })
+      .then((res) => {
+        let user_name = localStorage.getItem("UserName");
+        console.log("Username is: " + user_name);
+        if (user_name === "No One" || user_name === null) {
+          return;
+        } else {
+          alert("User was added");
+          document.location.replace("http://localhost:3000/tasks");
+        }
       });
   }
-
   function validateRegistration(e) {
     e.preventDefault();
     if (document.getElementById("InputFirstName").value === "") {
@@ -133,13 +153,13 @@ function LoginRegistration() {
                 }}
               >
                 <div className="mb-3 text-start form-group">
-                  <label for="InputEmail" className="form-label">
-                    Email address
+                  <label for="username" className="form-label">
+                    Username
                   </label>
-                  <input type="email" className="form-control" placeholder="Enter email" id="email" />
+                  <input type="text" className="form-control" placeholder="Enter username" id="username" />
                 </div>
                 <div className="mb-3 text-start">
-                  <label for="InputPassword1" className="form-label">
+                  <label for="password" className="form-label">
                     Password
                   </label>
                   <input type="password" className="form-control" id="password" />
