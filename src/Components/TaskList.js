@@ -1,13 +1,13 @@
 import React from "react";
+import Profile from "./Profile";
 // import BasicTable from './dataTable'
 import TaskTable from "./TasksTable";
 
 export default function TaskList() {
   return (
-    //Nav Bar Will render Here as component
     <container>
       <container className="profileHouseSection">
-        <h1>Welcome to the App </h1>
+        <h1 className="text-center p-4 text-primary">Your Tasks</h1>
       </container>
       <container className="taskList">
         <TaskTable />

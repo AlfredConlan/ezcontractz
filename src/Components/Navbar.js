@@ -5,6 +5,7 @@ import logo from "../Assets/img/logo.png";
 //Import Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import AuthenticationButton from "./AuthenticationButton";
 
 function NavBar() {
   return (
@@ -20,15 +21,19 @@ function NavBar() {
               <Link to="/tasks" style={{ textDecoration: "none" }} className="nav-link">
                 Tasks
               </Link>
-              <Link to="/ContractorSearch" style={{ textDecoration: "none" }} className="nav-link">
+              <Link to="/contractor-search" style={{ textDecoration: "none" }} className="nav-link">
                 ContractorSearch
               </Link>
               <Link to="/admin" style={{ textDecoration: "none" }} className="nav-link">
                 Admin
               </Link>
-              <Link to="/login" style={{ textDecoration: "none" }} className="nav-link">
-                Login
+              <Link to="/profile" style={{ textDecoration: "none" }} className="nav-link">
+                Profile
               </Link>
+              <AuthenticationButton />
+              {/* <Link to="/login" style={{ textDecoration: "none" }} className="nav-link">
+                Login
+              </Link> */}
               {/* <Link to="/AboutUs" style={{ textDecoration: "none" }} className="nav-link">
                 AboutUs
               </Link> */}

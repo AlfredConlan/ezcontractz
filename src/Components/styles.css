@@ -4,7 +4,7 @@
   
   .thead,
   tr {
-    background-color: honeydew;
+    background-color: white;
   }
   
   .tr,
@@ -12,12 +12,12 @@
     white-space: nowrap;
     padding: 1rem;
     text-align: left;
-    background-color: honeydew;
+    background-color: white;
   }
   
   tbody,
   tr:nth-child(odd) {
-    background-color: white;
+    background-color: #e6f6fe;
   }
   
   .tbody,
@@ -41,3 +41,9 @@
     border: 2px solid red;
     background-color: red;
 }  
+
+.btnOrange {
+  background-color: #c55a11;
+  color: white;
+}
+

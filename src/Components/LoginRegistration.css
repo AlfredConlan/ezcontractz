@@ -1,0 +1,21 @@
+.showBackground {
+    background-image: url("../Assets/img/Screenshot.png");
+    height: 900px;
+    /* You must set a specified height */
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    /* Resize the background image to cover the entire container */
+}
+
+.showBorder {
+    border-style: solid;
+    border-width: 6px;
+    border-color: red;
+}
+
+.loginBackground {
+    background-color: #EEEEEE !important;
+}
