@@ -5,11 +5,11 @@ import { Switch, Link } from "react-router-dom";
 import TaskList from "./Components/TaskList";
 import Navbar from "./Components/Navbar";
 import ContractorSearch from "./Components/ContractorSearch";
-import LoginRegistration from "./Components/LoginRegistration";
 import AdminDash from "./Components/AdminDash";
 import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 import Profile from "./Components/Profile";
 import ProtectedRoute from "./auth/protected-route";
+import Registration from "./Components/Registration";
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
 
         <ProtectedRoute exact path="/profile" component={Profile} />
 
-        <ProtectedRoute exact path="/login" component={LoginRegistration} />
+        <ProtectedRoute exact path="/registration" component={Registration} />
       </Switch>
     </Auth0ProviderWithHistory>
   );

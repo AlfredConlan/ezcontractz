@@ -11,7 +11,7 @@ const env = process.env.NODE_ENV || "development";
 const config = require("../config/config.json")[env];
 const db = {};
 const bodyParser = require("body-parser");
-const axios = require ('axios');
+const axios = require("axios");
 
 app.use(cors({ origin: (orig, cb) => cb(null, true), credentials: true }));
 
@@ -66,7 +66,6 @@ Users.init(
     lastName: DataTypes.STRING,
     email: DataTypes.STRING,
     location: DataTypes.STRING,
-    password: DataTypes.STRING,
     role: DataTypes.STRING,
   },
   {
@@ -122,25 +121,18 @@ app.post("/loginAttempt", async (req, res) => {
 // add a user   WORKING
 app.post("/users", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(req.body.password, salt, (err, hash) => {
-      if (!err) {
-        Users.create({
-          userName: req.body.userName,
-          firstName: req.body.firstName,
-          lastName: req.body.lastName,
-          email: req.body.email,
-          password: hash,
-          location: req.body.location,
-          role: req.body.role,
-        });
-      }
-    });
+  await Users.create({
+    userName: req.body.userName,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    location: req.body.location,
+    role: req.body.role,
   });
   res.send('{"userRegistered": "true"}');
 });
 
-// get all users   WORKING
+// get all users
 app.get("/users", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const users = await Users.findAll();
@@ -220,7 +212,7 @@ app.post("/tasks", async (req, res) => {
   return res.send('{"status": "Tasks added!"}');
 });
 
-// get all users   WORKING
+// get all tasks
 app.get("/tasks", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const tasks = await Tasks.findAll();
@@ -299,27 +291,25 @@ app.delete("/deleteTask", (req, res) => {
 //        'Authorization':'Bearer mP9UEWzoZ-_Px4TlJdHVmehnpdNfYIuAXtkW7kbwTnKLjgNJ2tYUd2oGBnKxEeyy7EgK3SXn8mIsvvt4l9CTmzZRs6PYKKTtQfyT4wVVWy-SAfp9ypJ_a6F8xTiYYXYx',
 //        'Accept': 'application/json',
 //        'Content-Type': 'application/json'
-//     }    
+//     }
 //   })
 //    .then(response => {
 //      console.log(response)
 //     res.json(response.data)})
 //});
 //--------------------------------------------WORKING YELP POST-GET ROUTE (dynamic params - the search uses this route)----------//
-app.post('/yelp', (req, res) => {
-      const {location, categories} = req.body;
-      axios.get(`https://api.yelp.com/v3/businesses/search?location=${location}&categories=${categories}`,{
-      headers:{
-        'Authorization':'Bearer mP9UEWzoZ-_Px4TlJdHVmehnpdNfYIuAXtkW7kbwTnKLjgNJ2tYUd2oGBnKxEeyy7EgK3SXn8mIsvvt4l9CTmzZRs6PYKKTtQfyT4wVVWy-SAfp9ypJ_a6F8xTiYYXYx',
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }    
+app.post("/yelp", (req, res) => {
+  const { location, categories } = req.body;
+  axios
+    .get(`https://api.yelp.com/v3/businesses/search?location=${location}&categories=${categories}`, {
+      headers: {
+        Authorization: "Bearer mP9UEWzoZ-_Px4TlJdHVmehnpdNfYIuAXtkW7kbwTnKLjgNJ2tYUd2oGBnKxEeyy7EgK3SXn8mIsvvt4l9CTmzZRs6PYKKTtQfyT4wVVWy-SAfp9ypJ_a6F8xTiYYXYx",
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
     })
-    .then(response => {
-      console.log(response)
-      res.json(response.data)})
+    .then((response) => {
+      console.log(response);
+      res.json(response.data);
+    });
 });
-
-
-
-
