@@ -286,6 +286,7 @@ app.delete("/deleteTask", (req, res) => {
 //   );
 // }
 //-------------------------------------------WORKING YELP GET---------------------------------------------//
+<<<<<<< HEAD
 app.get("/yelp", (req, res) => {
   axios
     .get("https://api.yelp.com/v3/businesses/search?location=GA", {
@@ -294,9 +295,39 @@ app.get("/yelp", (req, res) => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+=======
+//app.get('/yelp', (req, res) => {
+//      axios.get('https://api.yelp.com/v3/businesses/search?location=GA',{
+//     headers:{
+//        'Authorization':'Bearer mP9UEWzoZ-_Px4TlJdHVmehnpdNfYIuAXtkW7kbwTnKLjgNJ2tYUd2oGBnKxEeyy7EgK3SXn8mIsvvt4l9CTmzZRs6PYKKTtQfyT4wVVWy-SAfp9ypJ_a6F8xTiYYXYx',
+//        'Accept': 'application/json',
+//        'Content-Type': 'application/json'
+//     }    
+//   })
+//    .then(response => {
+//      console.log(response)
+//     res.json(response.data)})
+//});
+//--------------------------------------------WORKING YELP POST-GET ROUTE (dynamic params - the search uses this route)----------//
+app.post('/yelp', (req, res) => {
+      const {location, categories} = req.body;
+      axios.get(`https://api.yelp.com/v3/businesses/search?location=${location}&categories=${categories}`,{
+      headers:{
+        'Authorization':'Bearer mP9UEWzoZ-_Px4TlJdHVmehnpdNfYIuAXtkW7kbwTnKLjgNJ2tYUd2oGBnKxEeyy7EgK3SXn8mIsvvt4l9CTmzZRs6PYKKTtQfyT4wVVWy-SAfp9ypJ_a6F8xTiYYXYx',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }    
+>>>>>>> main
     })
     .then((response) => {
       console.log(response);
       res.json(response.data);
     });
 });
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> main
