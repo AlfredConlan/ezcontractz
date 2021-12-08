@@ -198,6 +198,7 @@ app.post("/tasks", async (req, res) => {
   // const userId = req.params["userName"];
   await Tasks.create(
     {
+      userName: req.body.userName,
       taskName: req.body.taskName,
       category: req.body.category,
       description: req.body.description,
@@ -205,11 +206,9 @@ app.post("/tasks", async (req, res) => {
       scheduled: req.body.scheduled,
       date: req.body.date,
       maxBudget: req.body.maxBudget,
-    }.catch((e) => {
-      console.log(e);
-    })
+    }
   );
-  return res.send('{"status": "Tasks added!"}');
+  res.send('{"status": "Tasks added!"}');
 });
 
 // get all tasks
@@ -246,18 +245,30 @@ app.get("/tasks/:user_name/:date_of_task", async (req, res) => {
   res.status(200).send(taskData);
 });
 
-// delete Tasks
-app.delete("/deleteTask", (req, res) => {
+// delete a user   WORKING
+app.delete("/users/delete/:id", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  const user_name = req.body.user_name;
-  const location_of_task = req.body.location_of_task;
-  Tasks.destroy({
+  let id = req.params["id"];
+  await Users.destroy({
     where: {
-      user_name: user_name,
-      location_of_task: location_of_task,
+      id:id,
     },
   });
-  return res.send('{"status": "Task deleted!"}');
+  res.send('{"userDeleted": "true"}');
+});
+
+// delete Tasks
+app.delete("/tasks/delete/:id", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  // const user_name = req.body.user_name;
+  let id = req.params.id;
+  Tasks.destroy({
+    where: {
+      id: id,
+      // taskName: taskName
+    },
+  });
+  res.send('{"status": "Task deleted!"}');
 });
 
 // Jake Section

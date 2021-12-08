@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   Tasks.init(
     {
-      userName: DataTypes.STRING,
       taskName: DataTypes.STRING,
       category: DataTypes.STRING,
       description: DataTypes.STRING,
@@ -21,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       scheduled: DataTypes.BOOLEAN,
       date: DataTypes.DATE,
       maxBudget: DataTypes.INTEGER,
+      userName: DataTypes.STRING
     },
     {
       sequelize,
