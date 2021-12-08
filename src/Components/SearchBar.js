@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import Contractor from './Contractor';
 import {Row, Col, Form, Button, InputGroup, FormControl, Card } from "react-bootstrap";
 import './Grid.css';
 
