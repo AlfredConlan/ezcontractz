@@ -10,6 +10,7 @@ import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 import Profile from "./Components/Profile";
 import ProtectedRoute from "./auth/protected-route";
 import Registration from "./Components/Registration";
+import AboutUs from "./Components/AboutUs";
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
         <ProtectedRoute exact path="/admin" component={AdminDash} />
 
         <ProtectedRoute exact path="/profile" component={Profile} />
+
+        <ProtectedRoute exact path="/aboutus" component={AboutUs} />
 
         <ProtectedRoute exact path="/registration" component={Registration} />
 

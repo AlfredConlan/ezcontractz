@@ -30,6 +30,9 @@ function NavBar() {
               <Link to="/profile" style={{ textDecoration: "none" }} className="nav-link">
                 Profile
               </Link>
+              <Link to="/aboutus" style={{ textDecoration: "none" }} className="nav-link">
+                About Us
+              </Link>
               <AuthenticationButton />
               {/* <Link to="/login" style={{ textDecoration: "none" }} className="nav-link">
                 Login

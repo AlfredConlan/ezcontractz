@@ -181,12 +181,12 @@ app.put("/users/modify/:user_name", async (req, res) => {
 });
 
 // delete a user   WORKING
-app.delete("/users/delete/:user_name", async (req, res) => {
+app.delete("/users/delete/:id", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  let userName = req.params["user_name"];
+  let id = req.params["id"];
   await Users.destroy({
     where: {
-      userName: userName,
+      id:id,
     },
   });
   res.send('{"userDeleted": "true"}');
