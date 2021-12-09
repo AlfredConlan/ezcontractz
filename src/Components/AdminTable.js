@@ -100,6 +100,7 @@ const AdminTable = (props) => {
         Header: "Actions",
         accessor: "actions",
         Cell: (props) => {
+          console.log(props);
           const rowIdx = props.row.id;
           return (
             <div className="grid">

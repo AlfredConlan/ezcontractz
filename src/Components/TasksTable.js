@@ -2,7 +2,8 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useTable } from "react-table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Trash, Pencil } from "react-bootstrap-icons";
-import "./styles.css";
+import axios from 'axios';
+
 
 const TaskTable = (props) => {
   const [tasks, setTasks] = useState([]);
@@ -20,7 +21,7 @@ const TaskTable = (props) => {
     setSearchTasks(searchTasks);
   };
 
-  // Fetching users from database
+  // Fetching tasks from database
   const retrieveTasks = () => {
     fetch("http://localhost:3001/tasks")
       .then((resp) => resp.json())
@@ -52,23 +53,23 @@ const TaskTable = (props) => {
   };
 
   const deleteTasks = (rowIndex) => {
-    const tasksName = tasksRef.current[rowIndex].taskName;
-    tasks
-      .remove(tasksName)
-      .then((response) => {
-        props.history.push("/tasks/delete/" + tasksName);
-        let newTasks = [...tasksRef.current];
-        newTasks.splice(rowIndex, 1);
-
-        setTasks(newTasks);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+    const id = tasksRef.current[rowIndex].id; 
+    console.log(tasksRef.current[rowIndex].id);
+    axios.delete("http://localhost:3001/tasks/delete/"+id)
+    .then(resp => {
+      console.log(resp)
+      refreshList();
+      // if (resp.data.userDeleted){
+      //   setTriggerUseEffect(triggerUseEffect+1)
+      // }
+    })};
 
   const columns = useMemo(
     () => [
+        {
+            Header: "ID",
+            accessor: "id",
+          },
       {
         Header: "Task Name",
         accessor: "taskName",
@@ -97,13 +98,17 @@ const TaskTable = (props) => {
         Header: "Actions",
         accessor: "actions",
         Cell: (props) => {
+        // console.log(props);
           const rowIdx = props.row.id;
+          console.log(rowIdx);
           return (
-            <div>
+            <div className="grid">
               <span onClick={() => openTasks(rowIdx)}>
                 <Pencil className="far fa-edit action mr-2" />
               </span>
-              <span onClick={() => deleteTasks(rowIdx)}>
+              <span onClick={() =>{ 
+                  deleteTasks(rowIdx)
+                  }}>
                 <Trash className="bi bi-trash" />
               </span>
             </div>
