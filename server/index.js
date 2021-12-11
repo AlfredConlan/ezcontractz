@@ -67,6 +67,7 @@ Users.init(
     email: DataTypes.STRING,
     location: DataTypes.STRING,
     role: DataTypes.STRING,
+    userImage: DataTypes.BLOB,
   },
   {
     sequelize,
@@ -139,13 +140,13 @@ app.get("/users", async (req, res) => {
   res.status(200).send(users);
 });
 
-// get one user   WORKING
-app.get("/users/:username", async (req, res) => {
+// get one user
+app.get("/users/:email", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  let userName = req.params["username"];
+  let email = req.params["email"];
   const users = await Users.findAll({
     where: {
-      userName: userName,
+      email: email,
     },
   });
   res.status(200).send(users);
@@ -186,7 +187,7 @@ app.delete("/users/delete/:id", async (req, res) => {
   let id = req.params["id"];
   await Users.destroy({
     where: {
-      id:id,
+      id: id,
     },
   });
   res.send('{"userDeleted": "true"}');

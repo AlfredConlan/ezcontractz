@@ -32,7 +32,7 @@ function App() {
 
         <ProtectedRoute exact path="/aboutus" component={AboutUs} />
 
-        <ProtectedRoute exact path="/registration" component={Registration} />
+        <Route exact path="/registration" component={Registration} />
 
         {/* UNCOMMENT THE SECTION BELOW TO DISABLE LOGIN/REGISTRATION */}
         {/*-------------------------------------------------------------*/}

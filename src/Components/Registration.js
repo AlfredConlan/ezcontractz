@@ -6,7 +6,7 @@ function Registration() {
   const { given_name, family_name, email } = user;
 
   function registerUser() {
-    fetch("http://localhost:3001/users", {
+    fetch("https://ezcontractz.herokuapp.com:3001/users", {
       method: "POST",
       headers: {
         // Accept: "application/json",
@@ -33,10 +33,11 @@ function Registration() {
           return;
         } else {
           alert("User was added");
-          document.location.replace("http://localhost:3000/tasks");
+          document.location.replace("https://ezcontractz.herokuapp.com:3000/tasks");
         }
       });
   }
+
   function validateRegistration(e) {
     e.preventDefault();
     if (document.getElementById("InputFirstName").value === "") {

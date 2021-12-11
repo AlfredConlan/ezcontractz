@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useMemo, useRef, setState } from "react";
 import { useTable } from "react-table";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Trash, Pencil} from 'react-bootstrap-icons';
-import axios from 'axios';
+import { Trash, Pencil } from "react-bootstrap-icons";
+import axios from "axios";
 // const user = require("../models/users");
-
-
 
 const AdminTable = (props) => {
   const [users, setUsers] = useState([]);
@@ -26,7 +24,7 @@ const AdminTable = (props) => {
 
   // Fetching users from database
   const retrieveUsers = () => {
-    fetch("http://localhost:3001/users")
+    fetch("https://ezcontractz.herokuapp.com:3001/users")
       .then((resp) => resp.json())
       .then((resp) => {
         setUsers(resp);
@@ -55,16 +53,15 @@ const AdminTable = (props) => {
   };
 
   const deleteUsers = (rowIndex) => {
-    const userName = usersRef.current[rowIndex].id; 
-    axios.delete("http://localhost:3001/users/delete/"+userName)
-    .then(resp => {
-      console.log(resp)
+    const userName = usersRef.current[rowIndex].id;
+    axios.delete("https://ezcontractz.herokuapp.com:3001/users/delete/" + userName).then((resp) => {
+      console.log(resp);
       refreshList();
       // if (resp.data.userDeleted){
       //   setTriggerUseEffect(triggerUseEffect+1)
       // }
-    })};
-
+    });
+  };
 
   const columns = useMemo(
     () => [
@@ -105,11 +102,13 @@ const AdminTable = (props) => {
             <div className="grid">
               <span onClick={() => openUsers(rowIdx)}>
                 <Pencil className="far fa-edit action mr-2" />
-              </span> 
-              <span onClick={() => {
-                deleteUsers(rowIdx)
-                }}>
-                <Trash className="bi bi-trash"/>
+              </span>
+              <span
+                onClick={() => {
+                  deleteUsers(rowIdx);
+                }}
+              >
+                <Trash className="bi bi-trash" />
               </span>
             </div>
           );

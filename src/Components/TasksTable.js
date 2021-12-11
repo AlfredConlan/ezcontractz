@@ -22,7 +22,7 @@ const TaskTable = (props) => {
 
   // Fetching users from database
   const retrieveTasks = () => {
-    fetch("http://localhost:3001/tasks")
+    fetch("https://ezcontractz.herokuapp.com:3001/tasks")
       .then((resp) => resp.json())
       .then((resp) => {
         setTasks(resp);
